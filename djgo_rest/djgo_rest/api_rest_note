@@ -1,0 +1,105 @@
+1️⃣ What exactly is an API in a web app?
+
+Think of a web app in three layers:
+
+Frontend (React/HTML/JS)  <--->  Backend (Django/Python)  <--->  Database (MySQL/PostgreSQL)
+
+
+The Database stores your data (students, results, users).
+
+The Backend contains the logic (how to save, read, update, delete data).
+
+The Frontend displays data and interacts with users.
+
+API = the messenger between frontend and backend
+
+It is NOT the database, and it is NOT Axios.
+It is the interface (or endpoint) your frontend calls to get or send data.
+
+Example:
+
+Your React app wants a list of students.
+
+It sends a request to your backend:
+
+GET http://localhost:8000/api/students/
+
+
+The backend receives the request, queries the database, and sends JSON data back.
+
+Here, the API is the URL + the backend logic that handles the request.
+So:
+
+http://localhost:8000/api/students/ → the API endpoint
+
+Django REST Framework helps you build this endpoint easily.
+
+2️⃣ What is REST then?
+
+REST (Representational State Transfer) is a set of rules to design APIs:
+
+Use HTTP methods to describe actions:
+
+GET → read data
+
+POST → create data
+
+PUT/PATCH → update data
+
+DELETE → delete data
+
+Resources are accessed via URLs:
+
+/api/students/ → all students
+
+/api/students/1/ → student with ID 1
+
+REST is a design style. The API is the actual endpoint you call.
+
+3️⃣ Do you have to write “/api/” in URLs?
+
+No ✨ — it is just a convention, not mandatory.
+
+Many developers use /api/ to clearly separate API endpoints from normal web pages.
+
+You could name your URL anything: /students/, /v1/students/, /users/ — it doesn’t matter as long as it’s consistent.
+
+Example in urls.py:
+
+from rest_framework.routers import DefaultRouter
+from .views import StudentViewSet
+
+router = DefaultRouter()
+router.register(r'students', StudentViewSet)
+urlpatterns = router.urls
+
+
+Here, /students/ is enough. Adding /api/ is just to make it clear:
+
+/api/students/
+
+4️⃣ Where does Axios fit in?
+
+Axios is how the frontend talks to the API.
+
+Example:
+
+axios.get("http://localhost:8000/api/students/")
+  .then(response => console.log(response.data));
+
+
+Axios just sends the HTTP request; the API receives it and responds with JSON.
+
+🔑 Visual analogy:
+Frontend (React)   ---Axios--->   API (Django REST endpoint)   ---queries---> Database
+      |                                     |
+      |<---------JSON Response-------------|
+
+
+Frontend: wants data
+
+API (endpoint): gives data
+
+Database: stores data
+
+So API = the part in the backend that the frontend calls, and REST = how the API is designed.

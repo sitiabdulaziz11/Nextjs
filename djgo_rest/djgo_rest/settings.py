@@ -58,6 +58,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # 👈 React (Vite) frontend
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
 ROOT_URLCONF = 'djgo_rest.urls'
 
 TEMPLATES = [

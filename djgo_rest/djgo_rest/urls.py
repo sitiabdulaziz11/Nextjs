@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from my_frstrest.views import MyTokenObtainPairView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('my_frstrest.urls')),
+    path('', include('my_frstrest.urls')),  # all API endpoints
+
 ]

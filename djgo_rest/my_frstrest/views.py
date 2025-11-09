@@ -10,6 +10,11 @@ from rest_framework import viewsets
 from .models import Student
 from .serializers import StudentSerializer
 
+
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+
 # Create your views here.
 
 
@@ -31,3 +36,16 @@ class StudentViewSet(viewsets.ModelViewSet):
 #             serializer.save()
 #             return Response(serializer.data, status=status.HTTP_201_CREATED)
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# Optional: customize the serializer to include username/email
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['name'] = user.username  # add custom info if needed
+        return token
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+
