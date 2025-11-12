@@ -34,10 +34,105 @@
 
 // export default App
 
-function Welcome(props) {
-  return <h1>Hello, {props.name}!</h1>;
+// function Welcome(props) {
+//   return <h1>Hello, {props.name}!</h1>;
+// }
+
+// export default function App() {
+//   return <Welcome name="Siti" />;
+// }
+
+
+
+// this not display any thing b/c no exported
+// import { useState } from "react";
+
+// // function Counter() {
+
+// // so to display either
+// export default function Counter() {
+//   const [count, setCount] = useState(0);
+
+//   return (
+//     <>
+//       <p>You clicked {count} times</p>
+//       <button onClick={() => setCount(count + 1)}>Click me</button>
+//     </>
+//   );
+// }
+
+
+// // or 
+// function Counter() {
+//   const [count, setCount] = useState(0);
+
+//   return (
+//     <>
+//       <p>You clicked {count} times</p>
+//       <button onClick={() => setCount(count + 1)}>Click me</button>
+//     </>
+//   );
+// }
+// export default Counter;
+
+
+// this alon not work 
+// export const Welcome = () => {
+//   return <h1>Hello, Siti!</h1>;
+// };
+
+
+import { useState, useEffect } from "react";
+
+function Welcome({ name }) {
+  const [newName, setNewName] = useState(name);
+
+  useEffect(() => {
+    console.log("This runs AFTER the first render");
+    setTimeout(() => {
+      setNewName("Eliyas");
+    }, 2000);  // waits 2 seconds before updating
+  }, []); // empty [] means run once
+  return <h1>Hello, {newName}!</h1>;
+
 }
 
 export default function App() {
   return <Welcome name="Siti" />;
 }
+
+
+
+// import { useState, useEffect } from "react";
+
+// export default function Demo() {
+//   // 1️⃣ useState → holds the data that can change
+//   const [name, setName] = useState("Siti");
+
+//   // 2️⃣ useEffect → runs automatically AFTER first render
+//   useEffect(() => {
+//     console.log("🌼 useEffect: component has rendered on screen!");
+//     console.log("Current name:", name);
+
+//     // This runs once because [] is empty
+//     setTimeout(() => {
+//       console.log("🕐 Changing name automatically...");
+//       setName("Eliyas");
+//     }, 2000); // change name after 2 seconds
+//   }, []);
+
+//   // 3️⃣ Event handler → runs only when user clicks the button
+//   function handleClick() {
+//     console.log("👆 Button clicked!");
+//     setName("Abdulaziz");
+//   }
+
+//   console.log("🔄 Rendering now... Name is:", name);
+
+//   return (
+//     <>
+//       <h1>Hello, {name}!</h1>
+//       <button onClick={handleClick}>Change to Abdulaziz</button>
+//     </>
+//   );
+// }
