@@ -813,6 +813,18 @@ onClick lets the user trigger that change.
 <>...</> just groups elements neatly.
 
 
+What is alert()?
+
+alert("Button clicked!")
+is a built-in browser function that shows a small popup message.
+
+Example:
+
+<button onClick={() => alert("Hello Siti!")}>Click Me</button>
+It is NOT from React.
+It is from the browser window API.
+
+
 Quick Quiz (10 Questions)
 
 1. What does JSX stand for?
@@ -1291,7 +1303,7 @@ onChange → for input elements when user types or selects.
 
 Example:
 
-<input onChange={(e) => setText(e.target.value)} />
+<input onChange={() => setText(target.value)} />
 
 🧭 6️⃣ What is e.target.value?
 
@@ -1310,6 +1322,61 @@ So:
 
 means:
 “When input changes, take the new text and save it in state.”
+
+
+✅  What is e (the event object)?
+
+When you do:
+
+<input onChange={(e) => setText(e.target.value)} />
+
+
+React calls your function and automatically gives you an object called event (often written e).
+
+e contains information about:
+
+what element triggered the event
+
+what the user typed
+
+the new value
+
+event type (click, change, submit,…)
+
+Meaning of:
+e.target.value
+
+
+target = the element (input)
+
+value = whatever the user typed inside it
+
+Example:
+
+function Form() {
+  const [text, setText] = useState("");
+
+  return (
+    <>
+      <input 
+        onChange={(e) => setText(e.target.value)} 
+      />
+      <p>You typed: {text}</p>
+    </>
+  );
+}
+
+❓ If you don’t use e?
+
+This won’t work:
+
+<input onChange={() => setText(e.target.value)} />
+
+
+❌ Because e does not exist inside the function.
+You MUST receive it as a parameter:
+
+(e) => ...
 
 📦 7️⃣ Can you use a component without props?
 

@@ -145,18 +145,73 @@
 //   return (
 //     <>
 //       <h1>Asselamu aleycum {name} </h1>
-//       <p> You are 28 years old</p>
+//       <p> You are {age} years old</p>
 //     </>
 //   )
      
 // }
 // export default Greeating;
 
-// import { application } from "express"
-import Counter from "./Counter";
 
-export default function application() {
-  return (
-    < Counter />
-  )
-}
+// import Counter from "./Counter";
+
+// export default function application() {
+//   return (
+//     < Counter />
+//   )
+// }
+
+
+// import {useState} from "react"
+
+// function InputBox() {
+//   const [text, setText] = useState("");
+
+//   return (
+//     <>
+//     <h2>heade</h2>
+//     <input
+//       type="text"
+//       value={text}
+//       onChange={() => setText(e.target.value)}
+//       placeholder="Type something"
+//     />
+//     </>
+    
+//   );
+// }
+// export default InputBox;
+
+
+export default function Demo() {  // not work b/c no key
+const names = ["Siti", "Eliyas", "Abdulaziz"];
+
+return (
+  <ul>
+    {names.map((n) => (
+      <li>{n}</li>   // ❌ missing key
+    ))}
+  </ul>
+);}
+// but bloew work
+//   return (
+//     <ul>
+//       {names.map((n) => (
+//         <li key={n}>{n}</li>
+//       ))}
+//     </ul>
+//   );
+// }
+
+// export default function NameList() {
+//   const names = ["Siti", "Eliyas", "Abdulaziz"];
+
+//   return (
+//     <ul>
+//       {names.map((n, index) => (
+//         <li key={index}>{n}</li>
+//       ))}
+//     </ul>
+//   );
+// }
+
